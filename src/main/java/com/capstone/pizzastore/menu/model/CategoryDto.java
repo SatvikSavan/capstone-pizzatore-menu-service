@@ -9,12 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemDto {
+public class CategoryDto {
 
-    private Long itemId;
-    private String itemName;
-    private String itemDescription;
-    private CategoryDto category;
-    private Long price;
-    private boolean isAvailable;
+    private Long categoryId;
+    private String name;
+    private String description;
 }

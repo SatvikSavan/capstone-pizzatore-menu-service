@@ -1,6 +1,8 @@
 package com.capstone.pizzastore.menu.service;
 
+import com.capstone.pizzastore.menu.domain.Category;
 import com.capstone.pizzastore.menu.domain.Item;
+import com.capstone.pizzastore.menu.model.CategoryDto;
 import com.capstone.pizzastore.menu.model.ItemDetailsRequest;
 import com.capstone.pizzastore.menu.model.ItemDto;
 import com.capstone.pizzastore.menu.repository.ItemRepository;
@@ -51,9 +53,17 @@ public class MenuService {
             return ItemDto.builder().build();
         } else {
             Item item = optionalItem.get();
+            Category category = item.getCategory();
+            CategoryDto categoryDto = CategoryDto.builder()
+                    .categoryId(category.getCategoryId())
+                    .name(category.getName())
+                    .description(category.getDescription())
+                    .build();
+
             return ItemDto.builder().itemId(item.getItemId())
                     .itemName(item.getItemName())
                     .itemDescription(item.getItemDescription())
+                    .category(categoryDto)
                     .price(item.getPrice())
                     .isAvailable(item.isAvailable()).build();
         }
